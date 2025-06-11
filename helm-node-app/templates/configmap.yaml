@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+data:
+  ENVIRONMENT: "{{ .Values.env.ENVIRONMENT }}"
+  BUILD_NUMBER: "{{ .Values.env.BUILD_NUMBER }}"

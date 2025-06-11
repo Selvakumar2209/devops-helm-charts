@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}             # Uses chart name (e.g., nodejs-app)
+  labels:
+    app: {{ .Chart.Name }}            # Labels for selectors
+
+spec:
+  replicas: {{ .Values.replicaCount }}    # Replica count from values.yaml
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"  # Full image path
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          env:
+            - name: ENVIRONMENT
+              value: "{{ .Values.env.ENVIRONMENT }}"
+            - name: BUILD_NUMBER
+              value: "{{ .Values.env.BUILD_NUMBER }}"

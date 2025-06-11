@@ -1,0 +1,18 @@
+replicaCount: 2             # Number of pod replicas to run
+
+image:
+  repository: selvakumar2209/devops-node-app  # DockerHub image path
+  tag: latest                                # Image tag (Jenkins updates this)
+  pullPolicy: IfNotPresent                   # Don’t pull if already cached
+
+service:
+  type: LoadBalancer                         # Expose app externally
+  port: 80                                   # Port to expose outside the cluster
+
+containerPort: 3000                          # App's internal port (defined in Dockerfile)
+
+env:
+  ENVIRONMENT: production                    # Injected as ENV variable
+  BUILD_NUMBER: "1.0.0"                      # Build metadata for display
+
+resources: {}                                # Resource requests/limits (can customize)
