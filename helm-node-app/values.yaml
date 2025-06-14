@@ -2,7 +2,7 @@ replicaCount: 2             # Number of pod replicas to run
 
 image:
   repository: selvakumar2209/gitops-node-app  # DockerHub image path
-  tag: ""                                     # Will be dynamically updated by Jenkins
+  tag: "1"
   pullPolicy: IfNotPresent                    # Don’t pull if already cached
 
 service:
